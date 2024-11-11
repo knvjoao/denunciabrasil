@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cadastro de Usuário</h1>
+        </div>
+
+        <div class="box">
+            <h2>Preencha os campos abaixo para realizar seu cadastro:</h2>
+
+            {% if messages %}
+                <div style="color:red">
+                {% for message in messages %}   <!-- o for loop seria para múltiplas mensagens -->
+                    <p>{{ message }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+            
+            <form method="POST" class="formulario">
+                {% csrf_token %}
+                    <label for="id_username">Nome de Usuário:</label>
+                    {{ form.username }}
+                    <label for="id_email">E-mail:</label>
+                    {{ form.email }}
+                    <label for="id_password1">Senha:</label>
+                    {{ form.password1 }}
+                    <label for="id_password2">Confirmar Senha:</label>
+                    {{ form.password2 }}
+                    <button type="submit" class="azul">Cadastrar</button>
+            </form>
+
+            <p style="text-align:center;">Já tem uma conta? <a href="{% url 'entrar' %}">Entrar</a></p>
+        </div>
+        
+    </div>
+</body>
+</html>

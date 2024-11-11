@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Denúncias</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if denuncia_id %}
+            <p>Denúncia realizada com sucesso! O ID da sua denúncia é: {{ denuncia_id }}</p>
+        {% endif %}
+        
+        <div class="header">
+            <h1>Minhas Denúncias</h1>
+        </div>
+
+        <div class="denuncia">
+            <ul>
+                {% for denuncia in denuncias %}
+                    <li>
+                        <a href="{% url 'ver_denuncia' token=denuncia.token %}">
+                            Ver Denúncia #{{ denuncia.token }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>Você não tem denúncias registradas.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="botaofooter">
+    <form method="post" action="{% url 'sair' %}">
+        {% csrf_token %}
+        <button type="submit" class="azul semborda">Sair</button>
+    </form>
+    <p><a class="azul" href="{% url 'home' %}">Página inicial</a></p>
+    </div>
+
+</body>
+</html>

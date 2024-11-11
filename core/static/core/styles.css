@@ -1,0 +1,92 @@
+/* CSS ilustrativo para o vídeo de apresentação — o projeto foi focado no back-end.*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cdd1a5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+}
+
+.header {
+    color: rgb(16, 107, 31);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.azul {
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.azul.semborda{
+    margin-top: 7px;
+    border: none;
+}
+
+.azul:hover {
+    background-color: #0056b3;
+}
+
+.botaofooter{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.box {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box h2 {
+    color: #333;
+}
+
+.formulario{
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario input, #pestoken{
+    width: 300px;
+    margin: 5px 0;
+    background-color: beige;
+}
+
+.guardartoken{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.grupo{
+    margin: 3px 0;
+}
+
+#titulo, #descricao{
+    background-color: beige;
+    width: 500px;
+    height: 120px;
+}
+
+#titulo{
+    height: 1.5em;
+}

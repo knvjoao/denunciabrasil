@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncia Brasil</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Bem-vindo ao Denúncia Brasil</h1>
+        </div>
+
+        <div class="box">
+            {% if denuncia_token %}
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <p>Denúncia realizada com sucesso! Guarde o token e a senha para consultar o status da denúncia. O Token da sua denúncia é:</p> <p class="guardartoken"> {{ denuncia_token }}.</p>
+            </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <p><a class="azul" href="{% url 'minhas_denuncias' %}">Minhas denúncias</a></p>
+                <p><a class="azul" href="{% url 'nova_denuncia' %}">Nova denúncia</a></p>
+            {% else %}
+                <p><a class="azul" href="{% url 'entrar' %}">Entrar</a></p>
+                <p><a class="azul" href="{% url 'cadastrar' %}">Cadastrar</a></p>
+                <p><a class="azul" href="{% url 'denuncia_anonima' %}">Denúncia anônima</a></p>
+            {% endif %}
+            
+            <form method="get" id="form-token">
+                <label for="pestoken">Pesquisar pelo token da denúncia:</label><br>
+                <input id="pestoken" name="token" type="text" required>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        
+    </div>
+
+
+<!-- Pesquisa por token -->
+<script>
+    document.getElementById('form-token').onsubmit = function(event) {
+    event.preventDefault();
+    var token = document.getElementById('pestoken').value;
+    var url = '/denuncia/' + token + '/';
+    this.action = url;
+    this.submit();
+    };
+</script>
+</body>
+</html>

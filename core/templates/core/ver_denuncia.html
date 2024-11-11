@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Denúncia</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ver Denúncia</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            <label for="senha">Digite a senha da denúncia:</label><br>
+            <input type="password" name="senha" id="senha" required><br>
+            <button type="submit">Enviar</button>
+        </form>
+
+        {% if senha_valida is not None %}
+            {% if senha_valida %}
+                <div class="detalhes-denuncia">
+                    <h2>Detalhes da Denúncia</h2>
+                    <p><strong>Token:</strong> {{ denuncia.token }}</p>
+                    <p><strong>Descrição:</strong> {{ denuncia.descricao }}</p>
+                    <p><strong>Status:</strong> {{ denuncia.status }}</p>
+                </div>
+            {% else %}
+                <p style="color: red;">Senha inválida. Tente novamente.</p>
+            {% endif %}
+        {% endif %}
+        <p><a class="azul" href="{% url 'home' %}">Página inicial</a></p>
+    </div>
+
+</body>
+</html>
